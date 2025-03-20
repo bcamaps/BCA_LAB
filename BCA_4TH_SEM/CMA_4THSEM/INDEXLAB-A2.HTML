@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Form</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #f2f2f2;
+            box-shadow: inset 0px 0px 10px #dcdcdc;
+            border-radius: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="url"],
+        input[type="file"],
+        input[type="submit"],
+        input[type="reset"],
+        input[type="range"] {
+            width: 95%;
+            padding: 5px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            font-size: 12px;
+        }
+
+        input[type="submit"] {
+            margin-left: 150px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            width: 20%;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"] :hover,
+        input[type="reset"] :hover {
+            background-color: #45a049;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            background: white;
+            height: 2px;
+            outline: none;
+        }
+
+        input[type="range"] ::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 20px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="color : #4CAF50">Registration Form</h2>
+    <form>
+        <label for="name">Name :</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <label for="password">Password :</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <label for="confirm_password">Confirm Password :</label>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password" required>
+        <label for="contact_number">Contact Number :</label>
+        <input type="tel" id="contact_number" name="contact_number" pattern="[0-9]{10}" placeholder="Enter a number"
+            required>
+        <label for="range">Skill Range :</label>
+        <input type="range" id="range" name="range" min="0" max="10" required>
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <label for="url">Profile URL :</label>
+        <input type="url" id="url" name="url" placeholder="Enter your URL" required>
+        <label for="file">Resume :</label>
+        <input type="file" id="file" name="file" required>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+        <script>
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm_password');
+            confirmPasswordInput.addEventListener('input', function () {
+                if (confirmPasswordInput.value !== passwordInput.value) {
+                    confirmPasswordInput.setCustomValidity('Passwords do notmatch');
+                } else {
+                    confirmPasswordInput.setCustomValidity('');
+                }
+            });
+        </script>
+    </form>
+</body>
+
+</html>
