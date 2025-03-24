@@ -2,7 +2,7 @@ package studentresultmvc;
 
 import java.util.Scanner;
 
-public class StudentResultMVC {
+public class studentresultmvc {
     public static void main(String[] args) {
         StudentModel model = new StudentModel();
         StudentView view = new StudentView();
