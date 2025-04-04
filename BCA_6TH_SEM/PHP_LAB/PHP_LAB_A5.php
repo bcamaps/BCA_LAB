@@ -5,33 +5,32 @@
     <title>Age Calculator</title>
 </head>
 <body>
+    <h2>Age Calculator</h2>
+    <form method="post">
+        <label for="birthdate">Enter your birth date: </label><br> 
+        <input type="date" id="birthdate" name="birthdate"><br> 
+        <input type="submit" value="Calculate">
+    </form>
 
 <?php
-$bdate = "";
-$result = "";
-
-if (isset($_POST["btn"])) {
-    $bdate = $_POST["birthdate"]; // Get the birthdate from the form
+function calculateAge($birthdate) {
     $today = new DateTime();
-    $bd = new DateTime($bdate); // Convert input to DateTime object
+    $diff = $today->diff(new DateTime($birthdate));
+    $years = $diff->y;
+    $months = $diff->m;
+    $days = $diff->d;
+    return array($years, $months, $days);
+}
 
-    if ($today < $bd) {
-        $result = "<h3 style='color: red;'>Yet to be born!</h3>";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $birthdate = $_POST["birthdate"];
+    if (!empty($birthdate)) {
+        list($years, $months, $days) = calculateAge($birthdate);
+        echo "<h3>Your age is: $years years, $months months, and $days days</h3>";
     } else {
-        $age = $today->diff($bd);
-        $result = "<h3>Your age is {$age->y} years, {$age->m} months, and {$age->d} days.</h3>";
+        echo "<h3>Please enter your birth date.</h3>";
     }
 }
 ?>
-
-<h2>Age Calculator</h2>
-<form method="post">
-    Enter your birth date: 
-    <input type="date" name="birthdate" value="<?= htmlspecialchars($bdate) ?>" required>
-    <input type="submit" name="btn" value="Calculate Age">
-</form>
-
-<?= $result ?>
-
 </body>
 </html>
